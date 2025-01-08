@@ -11,7 +11,7 @@ npm install express morgan cors nodemon bcryptjs jsonwebtoken
 
 MySQL
 prisma
-Tam123456
+1234
 
 
 npm install prisma
