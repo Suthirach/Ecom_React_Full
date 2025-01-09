@@ -45,6 +45,7 @@ npm create vite@latest .
 >npm run dev
 
 npm install axios
+npm i react-toastify
 
 
 --------------------------

@@ -39,7 +39,7 @@ exports.register = async(req,res)=>{
             }
         })
 
-        res.send('Hi register in controller Success')
+        res.send('Register Success')
 
     } catch (err) {
         //err
