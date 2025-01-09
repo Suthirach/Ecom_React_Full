@@ -63,13 +63,13 @@ exports.login = async(req,res)=>{
             }
         })
         if (!user || !user.enabled) {
-            return res.status(400).json({ message: "Email not Found or not Enabled"})
+            return res.status(400).json({ massage: "Email not Found or not Enabled"})
         }
 
         //step 2 check password 
         const isMatch = await bcrypt.compare(password,user.password)
         if (!isMatch){
-            return res.status(400).json({massage: "Password Invalid!!"})
+            return res.status(400).json({ massage: "Password Invalid!!"})
         }
 
         //step 3 Create Payload 

@@ -1,13 +1,19 @@
 import React,{ useState } from "react";
 import axios from "axios"
 import { toast } from 'react-toastify';
+import useEcomStore from "../../store/ecom-store";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const navigate = useNavigate( )
+  const actionLognin = useEcomStore((state)=>state.actionLognin)
+  const user = useEcomStore((state)=>state.user)
+  console.log( 'user form zutand',user)
 
   const [ form,setForm ] = useState({
     email:" ",
     password:" ",
-    confirmPassword:" "
   })
 
   const handleOnChange =(e)=>{
@@ -18,34 +24,32 @@ const Login = () => {
       [e.target.name]:e.target.value  
     })
   }
-  //Password is not Macth!! 
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    if(form.password !== form.confirmPassword){
-      return toast.error('Password is not Macth!!')
-    }
-    console.log(form)
-    // Send to Backj
-    try {
-      // code ยังไม่แน่ใจ กลับมาดู มันErr แต่ไม่ Res. ที่ส่งกลับมาจากหลัวบ้าน (เปิดเซอร์แล้วมีRes.กลับมา)
-      const res = await axios.post('http://localhost:5000/api/register', form)
-      toast.success(res.data)  
-      console.log(res)
-
-
-    }
-    catch(err){
-      const errMsg = err.response?.data?.message
-      toast.error(errMsg)
-      console.log(errMsg)
+    try{
+      const res = await actionLognin(form)
+      const role = res.data.payload.role
+      // console.log( 'role',role)
+      roleRedirect(role)
+      toast.success( 'Welcome Back')
+    }catch(err){
       console.log(err)
-      
+      const errMsg = err.response?.data?.massage
+      toast.error(errMsg)
+    }
+  }
+
+  const roleRedirect = (role)=> { 
+    if(role === 'admin'){
+      navigate('/admin')
+    } else {
+      navigate('/user')
     }
   }
 
   return (
     <div>
-      Register
+      login
       <form onSubmit={handleSubmit}>
         
         Email
@@ -64,15 +68,7 @@ const Login = () => {
         type="text"
         />
 
-        Confirm Password 
-        <input 
-        className="border" 
-        onChange={handleOnChange}
-        name="confirmPassword" 
-        type="text"
-        />
-
-        <button className="bg-blue-500  rounded-sm">Register</button>
+        <button className="bg-green-500 rounded-sm">login</button>
 
 
       </form>
