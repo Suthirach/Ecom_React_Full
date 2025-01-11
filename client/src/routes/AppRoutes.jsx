@@ -16,6 +16,8 @@ import Layout from '../layouts.jsx/Layout'
 import LayoutAdmin from '../layouts.jsx/LayoutAdmin'
 import LayoutUser from '../layouts.jsx/LayoutUser'
 import Manage from '../pages/admin/Manage'
+import ProtectRouterUser from './ProtectRouterUser'
+import ProtectRouterAdmin from './ProtectRouterAdmin'
 
 
 
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin',
-        element:<LayoutAdmin/>,
+        element: <ProtectRouterAdmin element={<LayoutAdmin/>}/>,
         children:[
             { index: true, element: <DashBoard />},
             { path: 'category', element: <Category />},
@@ -46,8 +48,9 @@ const router = createBrowserRouter([
         },
       {
         path: '/user',
-        element:<LayoutUser/>,
-        children:[
+        // element:<LayoutUser/>,
+         element: <ProtectRouterUser element={<LayoutUser/>}/>,
+        children:[ 
           { index:true, element: <HomeUser />},
 
         ]

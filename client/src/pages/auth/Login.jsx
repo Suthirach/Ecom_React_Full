@@ -48,27 +48,27 @@ const Login = () => {
   }
 
   return (
-    <div>
-      login
-      <form onSubmit={handleSubmit}>
+    <div className="m-2" >
+      <p className="p-2 text-2xl">login </p>
+      <form  className="flex space-x-4 p-5" onSubmit={handleSubmit}>
         
-        Email
+        <h1 className="items-center flex flex-row ">Email</h1>
         <input 
-        className="border" 
+        className="border rounded" 
         onChange={handleOnChange}
         name="email" 
         type="email"
         />
 
-        Password 
+        <h2 className="items-center flex flex-row">Password</h2> 
         <input 
-        className="border" 
+        className="border rounded "
         onChange={handleOnChange}
         name="password" 
         type="text"
         />
 
-        <button className="bg-green-500 rounded-sm">login</button>
+        <button className="flex flex-row m-1 text-teal-900 bg-teal-300 rounded-md items-center p-1">login</button>
 
 
       </form>

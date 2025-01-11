@@ -1,8 +1,11 @@
 import React from 'react'
+import FormCatrgory from '../../components/admin/FormCatrgory'
 
 export const Category = () => {
   return (
-    <div>Category</div>
+    <div>
+      <FormCatrgory/>
+    </div>
   )
 }
  export default Category
