@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { create, list, update, remove, listBy, search, read } = require('../controllers/product')
-
+const { create, list, update, remove, listBy, search, read, createImages, removeImages } = require('../controllers/product')
+const { authCheck, adminCheck } = require('../middlewares/authCheck')
 
 
 
@@ -17,6 +17,8 @@ router.delete('/product/:id',remove)
 router.post('/productby',listBy)
 router.post('/search/filters',search)
 
+router.post('/images',authCheck,adminCheck,createImages)
+router.post('/removeimages',authCheck,adminCheck,removeImages)
 
 
 

@@ -117,8 +117,8 @@ const FormCategory = () => {
                   type="text"
                   placeholder="Add category name"
                 />
-                <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg px-4 py-2 transition-all duration-200">
-                  Add Category
+                <button  className="bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg px-4 py-2 transition-all duration-200">
+                  Add Category 
                 </button>
               </form>
       

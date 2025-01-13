@@ -18,6 +18,7 @@ import LayoutUser from '../layouts.jsx/LayoutUser'
 import Manage from '../pages/admin/Manage'
 import ProtectRouterUser from './ProtectRouterUser'
 import ProtectRouterAdmin from './ProtectRouterAdmin'
+import EditProduct from '../pages/admin/EditProduct'
 
 
 
@@ -42,10 +43,11 @@ const router = createBrowserRouter([
             { index: true, element: <DashBoard />},
             { path: 'category', element: <Category />},
             { path: 'product', element: <Product />}, 
+            { path: 'product/:id', element: <EditProduct/>}, 
             { path: 'manage', element: <Manage />} 
             
           ]
-        },
+        }, 
       {
         path: '/user',
         // element:<LayoutUser/>,

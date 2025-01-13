@@ -1,5 +1,6 @@
 const { query } = require("express")
 const prisma = require("../config/prisma")
+const cloudinary = require('cloudinary').v2;
 
 exports.create = async(req,res)=>{
     try{
@@ -8,6 +9,7 @@ exports.create = async(req,res)=>{
         categoryId, images  } = req.body
         // console.log (title, description, price, quantity, 
             // categoryId, images)
+        
         const product = await prisma.product.create({
             data: {
                 title: title,
@@ -25,7 +27,7 @@ exports.create = async(req,res)=>{
                 }
             }
         })
-        console.log(product)
+        // console.log(product)
         res.send(product)
 
 
@@ -114,7 +116,7 @@ exports.update = async(req,res)=>{
                 }
             }
         })
-        console.log(product)
+        console.log('อยู่นี้นะเว้ย',product)
         res.send('update product success')
     }catch(err){
         console.log(err)
@@ -249,3 +251,44 @@ exports.search = async(req,res)=>{
     }
 }
 
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,  
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// module.exports = cloudinary;
+
+exports.createImages = async(req,res)=>{
+    try{
+
+        //code
+        // console.log(req.body)
+        const result = await cloudinary.uploader.upload(req.body.image,{
+            public_id: `Uzrac-${Date.now()}`,
+            resource_type: 'auto',
+            folder: 'Ecom2025'
+        }) 
+        res.send(result)
+        // res.send('hi create images')
+    }catch(err){
+        console.log(err)
+        res.status(500).json({ message : "Server error"})
+    }
+}
+
+exports.removeImages = async(req,res)=>{
+    try{
+        //code
+        const { public_id } = req.body
+        console.log(public_id)
+        cloudinary.uploader.destroy(public_id, (result)=> {
+            res.status(200).json({ message : "Remove Success"})
+        })
+
+        // res.send('hi remove images')
+    }catch(err){
+        console.log(err)
+        res.status(500).json({ message : "Server error"})
+    }
+}

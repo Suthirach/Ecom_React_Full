@@ -10,10 +10,10 @@ const cors = require('cors')
 
 // middleware \
 app.use(morgan('dev'))
-app.use(express.json())
+app.use(express.json({limit: '20mb'}))
 app.use(cors())
 
-// app.use('/api',authRouter)
+// app.use('/api',authRouter)clas
 // app.use('/api',categoryRouter)
 readdirSync('./routes').map((A)=> app.use('/api', require('./routes/'+A)))
 
