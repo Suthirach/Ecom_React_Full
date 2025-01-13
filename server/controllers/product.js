@@ -26,7 +26,7 @@ exports.create = async(req,res)=>{
             }
         })
         console.log(product)
-        res.send('create product success')
+        res.send(product)
 
 
     }catch(err){
