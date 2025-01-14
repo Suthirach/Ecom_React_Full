@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import useEcomStore from "../../store/ecom-store";
 import { create } from "zustand";
-import { createProduct } from "../../api/product";
+import { createProduct, deleteProduct, listProduct } from "../../api/product";
 import { toast } from "react-toastify";
 import { Pencil, Eraser } from "lucide-react";
 import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 
 const initialState = {
-    title: "Acer Aspire Notebook",
-    description: "Great notebook for personal use",
-    price: 11500,
-    quantity: 30,
+    title: "",
+    description: "",
+    price: "",
+    quantity: "",
     categoryId: "",
     images: [],
 };
@@ -24,10 +24,18 @@ const FormProduct = () => {
     const products = useEcomStore((state) => state.Products);
     // console.log(products);
 
-    const [form, setForm] = useState(initialState);
+    const [form, setForm] = useState({
+        title: "",
+        description: "",
+        price: "",
+        quantity: "",
+        categoryId: "",
+        images: [],
+    })
+
     useEffect(() => {
         getCategory(token);
-        getProduct(token, 100);
+        getProduct(100);
     }, []);
 
     const handleOnChange = (e) => {
@@ -43,11 +51,27 @@ const FormProduct = () => {
         try {
             const res = await createProduct(token, form);
             console.log(res);
+            setForm(initialState);
+            getProduct()
             toast.success(`Add : ${res.data.title} Success!`);
         } catch (err) {
             console.log(err);
         }
     };
+    const handleDelete = async (id) => {
+        console.log(id); 
+        if(window.confirm("Are you sure to delete this product?")){
+            try{
+                const res = await deleteProduct(token,id)
+                console.log(res)
+                getProduct()  
+                toast.success(`Delete Success!`)
+            }catch(err){
+                console.log(err)
+            }   
+        }
+
+    }
 
     return (
         <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
@@ -124,7 +148,7 @@ const FormProduct = () => {
                         Products
                     </h1>
                     <div className="overflow-x-auto">
-                        <table className="table-auto w-full border-collapse border border-gray-200 text-sm shadow-md">
+                        <table  className=" table-auto w-full border-collapse border border-gray-200 text-sm shadow-md">
                             <thead>
                                 <tr className="bg-blue-100">
                                     {[
@@ -145,22 +169,22 @@ const FormProduct = () => {
                                             {header}
                                         </th>
                                     ))}
-                                </tr>
+                                </tr >
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {products.map((item, index) => (
                                     <tr
                                         key={index}
-                                        className={`hover:bg-gray-100 ${
+                                        className={ `hover:bg-blue-100  ${
                                             index % 2 === 0
                                                 ? "bg-white"
                                                 : "bg-gray-50"
                                         }`}
                                     >
-                                        <td className="border border-gray-200 px-4 py-2">
+                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 px-4 py-2">
                                             {index + 1}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2">
+                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 px-4 py-2">
                                             {item.images.length > 0 ? (
                                                 <img
                                                     src={item.images[0].url}
@@ -173,37 +197,41 @@ const FormProduct = () => {
                                                 </span>
                                             )}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2">
+                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 p-4 py-2">
                                             {item.title}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2">
+                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2">
                                             {item.description}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2 text-right">
+                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
                                             ${item.price.toFixed(2)}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2 text-right">
+                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
                                             {item.quantity}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2 text-right">
+                                        <td className=" hover:bg-blue-200 hover:scale-105 px-4 py-2 text-right">
                                             {item.sold}
                                         </td>
-                                        <td className="border border-gray-200 px-4 py-2">
+                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2">
                                             {item.updateAt}
                                         </td>
                                         <td className="flex items-center justify-center box-border px-4 py-2 ">
-                                            <button className="flex items-center justify-center text-yellow-700 bg-yellow-200 hover:bg-yellow-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105 mr-2">
-                                                <Link
-                                                    to={`/admin/product/${item.id}`}
-                                                >
-                                                    <Pencil
-                                                        size={18}
-                                                        strokeWidth={1.5}
-                                                    />
-                                                </Link>
-                                            </button>
-                                            <button className="flex items-center justify-center text-red-600 bg-red-200 hover:bg-red-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105">
-                                                <Eraser
+
+
+                                            <Link
+                                                to={`/admin/product/${item.id}`}
+                                            >   
+                                                <button className="flex items-center justify-center text-yellow-700 bg-yellow-200 hover:bg-yellow-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105 mr-2">
+                                                        <Pencil
+                                                            size={18}
+                                                            strokeWidth={1.5}
+                                                        />
+                                                </button>
+                                            </Link>
+
+                                            <button onClick={()=>handleDelete(item.id)} className="flex items-center justify-center text-red-600 bg-red-200 hover:bg-red-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105">
+                                                <Eraser 
+                                                    className="text-red-600"
                                                     size={18}
                                                     strokeWidth={1.5}
                                                 />

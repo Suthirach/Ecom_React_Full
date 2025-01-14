@@ -4,7 +4,7 @@ import Resizer from "react-image-file-resizer";
 import { removeFiles, uploadFiles } from "../../api/product";
 import useEcomStore from "../../store/ecom-store";
 import { all } from "axios";
-import { X } from "lucide-react";
+import { X, LoaderCircle   } from "lucide-react";
 
 const Uploadfile = ({ form, setForm }) => {
     const token = useEcomStore((state) => state.token);
@@ -71,6 +71,7 @@ const Uploadfile = ({ form, setForm }) => {
                             })
                             .catch((err) => {
                                 console.log(err);
+                                setIsloading(false);
                                 toast.error("upload image failed, try again");
                             });
                     },
@@ -84,6 +85,12 @@ const Uploadfile = ({ form, setForm }) => {
         <div>
             
             <div className="flex flex-wrap my-4 mx-auto">
+                <div>
+                    {   
+                        isloading && <LoaderCircle className="items-center animate-spin" text="loading...is your image"/>
+                    }
+                </div>
+                {/* <LoaderCircle className=" animate-spin"/> */}
             {
                 form.images.map((item, index) => (
                 <div className="w-1/4 p-2 relative" key={index}>
