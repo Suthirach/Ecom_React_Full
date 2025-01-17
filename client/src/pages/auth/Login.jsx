@@ -62,7 +62,7 @@ const Login = () => {
             </label>
             <input
               id="email"
-              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none"
               onChange={handleOnChange}
               name="email"
               type="email"
@@ -77,7 +77,7 @@ const Login = () => {
             </label>
             <input
               id="password"
-              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none"
               onChange={handleOnChange}
               name="password"
               type="password"
@@ -87,7 +87,7 @@ const Login = () => {
   
           {/* Submit Button */}
           <button
-            className="w-full bg-blue-500 text-white font-bold py-3 text-lg rounded-lg hover:bg-blue-600 transition-all duration-200"
+            className="w-full bg-orange-400 text-white font-bold py-3 text-lg rounded-lg hover:bg-orange-500 transition-all duration-200"
             type="submit"
           >
             Login

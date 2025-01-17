@@ -1,8 +1,11 @@
 import React from 'react'
+import ListCard from '../components/card/ListCard'
 
 function Cart() {
   return (
-    <div>Cart</div>
+    <div>
+      <ListCard/>
+    </div>
   )
 }
 

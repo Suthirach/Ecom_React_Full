@@ -1,9 +1,15 @@
 import React from "react";
 import { ShoppingBasket } from 'lucide-react';
+import useEcomStore from "../../store/ecom-store";
 
 const ProductCard = ({item}) => {
+    const actionAddCart = useEcomStore((state)=>state.actionAddCart)
+    const getetTotolPrice = useEcomStore((state) => state.getetTotolPrice);
+    // text-white p-4 bg-green-500 rounded-md w-full hover:bg-green-300 hover:scale-105 disabled:bg-slate-700  disabled:scale-100   hover:duration-200
+    // border rounded-lg shadow-lg p-4 w-60 bg-white hover:shadow-xl transition-shadow  hover:duration-200 flex flex-col hover:scale-105
+   
     return (
-        <div className="border rounded-lg shadow-lg p-4 w-60 bg-white hover:shadow-xl transition-shadow duration-300 flex flex-col hover:scale-105 transition-transform duration-100">
+        <div className="   border rounded-lg shadow-lg p-4 w-60 bg-white    hover:duration-500 flex flex-col hover:scale-105 ">
             {/* Image Section */}
             <div className="mb-4">
                 {item.images && item.images.length > 0 ? (
@@ -29,10 +35,12 @@ const ProductCard = ({item}) => {
     
             {/* Price and Button */}
             <div className="flex justify-between items-center mt-auto pt-4">
-                <span className="text-lg font-bold text-blue-500">{item.price} บาท</span>
-                <button className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 transition-colors duration-200 shadow-md flex items-center gap-2">
+                <span className="text-lg font-bold text-orange-600">{item.price} บาท</span>
+                <button 
+                    onClick={()=>actionAddCart(item)}
+                    className="bg-orange-400 text-white px-4 py-1 rounded-md hover:bg-orange-600 transition-colors duration-200 shadow-md flex items-center gap-2">
                     <ShoppingBasket />
-                    <span>ซื้อ</span>
+                    {/* <span></span> */}
                 </button>
             </div>
         </div>

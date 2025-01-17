@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import useEcomStore from "../store/ecom-store";
 
 const MainNav = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,8 +11,10 @@ const MainNav = () => {
     const isloginPage = location.pathname === "/login";
     const isRegisterPage = location.pathname === "/register";
 
+    const carts = useEcomStore((state) => state.carts);
+
     return (
-        <nav className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+        <nav className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg">
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
                 {/* Logo */}
                 <div className="text-2xl font-bold">
@@ -88,29 +91,36 @@ const MainNav = () => {
 
                 {/* Links - Desktop */}
 
-                {!isRegisterPage && (
-                    <div className="hidden md:flex items-center space-x-6">
+                {/* {!isRegisterPage && ( */}
+                    <div className="  items-center ">
                         <Link
                             to={"/"}
-                            className="hover:text-gray-300 transition"
+                            className="hover:text-gray-300 transition p-4"
                         >
                             Home
                         </Link>
                         <Link
                             to={"shop"}
-                            className="hover:text-gray-300 transition"
+                            className="hover:text-gray-300 transition p-4"
                         >
                             Shop
                         </Link>
+
+                        {/* Badge */}
                         <Link
                             to={"cart"}
-                            className="hover:text-gray-300 transition"
+                            className="hover:text-gray-300 transition  p-4"
                         >
                             Cart
+                            {
+                                carts.length > 0 && (
+                                    <span className=" w-5 text-center absolute top-6 right-300 bg-red-500  text-sm rounded-full hover:decoration-slate-100 hover:scale-125 ">{carts.length}</span>
+                                )
+                            }
+                            
                         </Link>
                     </div>
-        
-                )}
+                {/* )} */}
 
                 {/* Search Box - Hide on Shop Page */}
                 {/* {!isShopPage && (
@@ -127,11 +137,11 @@ const MainNav = () => {
                     )} */}
 
                 {/* Auth Buttons */}
-                <div className="hidden md:flex space-x-4">
+                <div className=" md:flex space-x-4">
                     {!isRegisterPage && (
                         <Link
                             to={"register"}
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                            className="shadow-lg bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition"
                         >
                             Register
                         </Link>
@@ -140,11 +150,11 @@ const MainNav = () => {
                     {!isloginPage && (
                         <Link
                             to={"login"}
-                            className="border border-white hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition"
+                            className="border shadow-lg border-white hover:bg-white hover:text-orange-500 px-4 py-2 rounded-lg transition"
                         >
                             Login
                         </Link>
-                    )}
+                    )} 
                 </div>
 
                 {/* Mobile Menu Button */}

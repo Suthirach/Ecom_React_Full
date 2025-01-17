@@ -55,12 +55,12 @@ const Register = () => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Email Field */}
           <div className="flex flex-col">
-            <label className="text-gray-700 font-medium mb-2" htmlFor="email">
+            <label className="font-medium mb-2" htmlFor="email">
               Email
             </label>
             <input
               id="email"
-              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="border  border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none"
               onChange={handleOnChange}
               name="email"
               type="email"
@@ -70,12 +70,12 @@ const Register = () => {
   
           {/* Password Field */}
           <div className="flex flex-col">
-            <label className="text-gray-700 font-medium mb-2" htmlFor="password">
+            <label className="  border-gray-300 text-gray-700 font-medium mb-2" htmlFor="password">
               Password
             </label>
             <input
               id="password"
-              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none"
               onChange={handleOnChange}
               name="password"
               type="password"
@@ -93,7 +93,7 @@ const Register = () => {
             </label>
             <input
               id="confirmPassword"
-              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="border border-gray-300 rounded-lg p-4 text-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none"
               onChange={handleOnChange}
               name="confirmPassword"
               type="password"
@@ -103,7 +103,7 @@ const Register = () => {
   
           {/* Submit Button */}
           <button
-            className="w-full bg-purple-500 text-white font-bold py-3 text-lg rounded-lg hover:bg-purple-600 transition-all duration-200"
+            className="w-full bg-yellow-400 text-white font-bold py-3 text-lg rounded-lg hover:bg-orange-400 transition-all duration-200"
             type="submit"
           >
             Register

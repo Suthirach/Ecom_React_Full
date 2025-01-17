@@ -190,7 +190,13 @@ exports.save_address = async(req,res)=>{
 
 exports.save_order = async(req,res)=>{
     try{
+        const { id, amount, status, currency } = req.body.paymentIntent
         //code
+        // step 0 check payload  stripe 
+        // console.log(req.body)
+        // return res.send('oh oh oh ')
+
+        const amountTHB = Number(amount) / 100 
         // Step 1 Get User Cart 
         const userCart = await prisma.cart.findFirst({
             where:{ 
@@ -207,21 +213,21 @@ exports.save_order = async(req,res)=>{
                 })
         }
         // check quantity 
-        for(const item of userCart.products){
-            const product = await prisma.product.findUnique({
-                where:{ id: item.productId },
-                select:{ quantity: true, title: true }
-            })
-            // console.log(item)
-            // console.log(product)
-            if (!product || item.count > product.quantity){
-                return res.status(400).json({ 
-                    OK : false,
-                    message: `ขออภัยสินค้า ${product?.title || 'product'} หมดแล้วจ้า`
-                })
-            }
-        }
-        // Create a New Order 
+        // for(const item of userCart.products){
+        //     const product = await prisma.product.findUnique({
+        //         where:{ id: item.productId },
+        //         select:{ quantity: true, title: true }
+        //     })
+        //     // console.log(item)
+        //     // console.log(product)
+        //     if (!product || item.count > product.quantity){
+        //         return res.status(400).json({ 
+        //             OK : false,
+        //             message: `ขออภัยสินค้า ${product?.title || 'product'} หมดแล้วจ้า`
+        //         })
+        //     }
+        // }
+        // // Create a New Order 
         const order = await prisma.order.create({ 
             data: {
                     products: {
@@ -229,13 +235,22 @@ exports.save_order = async(req,res)=>{
                             productId: item.productId,
                             count: item.count,
                             price: item.price,
+
                         }))
                     },     
                     orderedBy: {
                             connect: { id: req.user.id },
                     },
                     cartTotal: userCart.cartTotal,
-                    }
+                    stripePaymentId: id, 
+                    amount: Number(amount),
+                    status: status,
+                    currency: currency,
+                    // stripePaymentId String?
+                    // amount          Int?
+                    // status          String?
+                    // currency       String?
+                    },
                     
         })
         // update  Order 
@@ -261,6 +276,7 @@ exports.save_order = async(req,res)=>{
         console.log(err)
         res.status(500).json({ message : "Server error"})
     }
+    
 }
 
 exports.get_order = async(req,res)=>{

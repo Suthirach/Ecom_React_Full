@@ -5,13 +5,54 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 import { listCategory } from '../api/Category'
 import Product from '../pages/admin/Product'
 import { listProduct, searchFilters } from '../api/product'
+import _ from 'lodash'
 
-
-const ecomStore = (set) => ({
+const ecomStore = (set, get) => ({
     user : null,
     token : null,
     categories : [], 
     Products : [],
+    carts: [], 
+    
+    actionAddCart:(product)=>{
+        const  carts = get().carts
+        const updateCart = [...carts,{...product,count:1 }]
+
+        // step uniqe   
+        const uniqe = _.unionWith(updateCart,_.isEqual)
+        // console.log("Click add in Zundtand",carts)
+        console.log("carts",carts)
+
+        set({carts: uniqe})
+    },
+
+    actionUpdateQuantity:(productId,newQuantity)=>{
+        // console.log("Update Click",productId,newQuantity)
+        set((state)=>({
+            carts: state.carts.map((item)=>
+                item.id === productId
+                    ? { ...item , count: Math.max(1,newQuantity) } 
+                    : item
+
+            )
+        }))
+    },
+
+    actionRemoveProduct:(productId)=>{
+        // console.log("Remove Yellllll",productId)
+        set((state)=>({
+            carts: state.carts.filter((item)=>
+                item.id !== productId
+            )
+        }))
+    },
+
+    getetTotolPrice:()=>{
+        return get().carts.reduce((total,item)=>{
+            return total + item.price * item.count 
+        },0)
+    },
+
     actionLognin : async(form)=> {
         const res = await axios.post('http://localhost:5000/api/login', form)
     //    console.log(res.data.token)

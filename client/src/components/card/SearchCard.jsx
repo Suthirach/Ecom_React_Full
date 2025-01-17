@@ -112,14 +112,14 @@ const SearchCard = () => {
         //   trackStyle={[{ backgroundColor: "#2563eb" }]}
           trackStyle={[
             {
-              backgroundImage: "linear-gradient(to right, #2563eb, #fced0a)",
+              backgroundImage: "linear-gradient(to right, #fbbf24, #b45309)",
             },
           ]}
           handleStyle={[
-            { borderColor: "#2563eb" },
-            { borderColor: "#fced0a" },
+            { borderColor: "#fbbf24" },
+            { borderColor: "#b45309" },
           ]}
-          railStyle={{ backgroundColor: "#e5e7eb" }}
+          railStyle={{ backgroundColor: "e" }}
         />
       </div>
     </div>
