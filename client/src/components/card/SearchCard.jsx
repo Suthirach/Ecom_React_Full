@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useEcomStore from "../../store/ecom-store";
 import 'rc-slider/assets/index.css';
 import Slider from "rc-slider";
+import { numberFormat } from "../../utils/number";
 
 const SearchCard = () => {
   const getProduct = useEcomStore((state) => state.getProduct);
@@ -100,8 +101,8 @@ const SearchCard = () => {
       <div>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Price</h2>
         <div className="flex justify-between text-gray-700 mb-4">
-          <span>Min: {price[0]}</span>
-          <span>Max: {price[1]}</span>
+          <span>Min: {numberFormat(price[0])}</span>
+          <span>Max: {numberFormat(price[1])}</span>
         </div>
         <Slider
           range

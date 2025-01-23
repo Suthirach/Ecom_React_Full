@@ -48,8 +48,8 @@ const Login = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-8">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 pb-40">
+      <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-8">
         {/* Header */}
         <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">Login</h1>
   

@@ -4,6 +4,7 @@ import useEcomStore from "../../store/ecom-store";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserCart } from "../../api/user";
 import { toast } from "react-toastify";
+import { numberFormat } from "../../utils/number";
 
 const ListCard = () => {
     const cart = useEcomStore((state) => state.carts);
@@ -12,20 +13,20 @@ const ListCard = () => {
     const navigate = useNavigate();
     // const createUserCart = useEcomStore((state) => state.createUserCart);
 
-    console.log(cart) 
+    console.log(cart);
 
-    const handleSaveCart = async()=>{
-        await createUserCart(token,{cart})
-        .then((res)=>{
-            console.log(res)
-            toast.success('Add to Cart Success.')
-            navigate('/checkout')
-        })
-        .catch((err)=>{
-            console.log(err)
-            toast.error('Add to cart failed.!!!')
-        })
-    }
+    const handleSaveCart = async () => {
+        await createUserCart(token, { cart })
+            .then((res) => {
+                console.log(res);
+                toast.success("Add to Cart Success.");
+                navigate("/checkout");
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.warning(err.response.data.message);
+            });
+    };
 
     const getetTotolPrice = useEcomStore((state) => state.getetTotolPrice);
     // console.log(cart);
@@ -81,8 +82,10 @@ const ListCard = () => {
                                             <div className="">
                                                 <div className="  p-2 bg-white rounded-sm ">
                                                     <span className=" text-center">
-                                                        {item.price} x{" "}
-                                                        {item.count}
+                                                        {numberFormat(
+                                                            item.price
+                                                        )}{" "}
+                                                        x {item.count}
                                                     </span>
                                                 </div>
                                             </div>
@@ -93,7 +96,10 @@ const ListCard = () => {
                                         {/* ราคา */}
                                         <div className="p-4 flex flex-row  font-bold text-orange-700 ">
                                             <span className="pt-2 items-center text-base">
-                                                {item.price * item.count} บาท
+                                                {numberFormat(
+                                                    item.price * item.count
+                                                )}{" "}
+                                                บาท
                                             </span>
                                         </div>
                                     </div>
@@ -117,19 +123,25 @@ const ListCard = () => {
                             <div className="flex justify-between px-2">
                                 <span>net amount</span>
                                 <span className=" text-orange-500 font-bold text-xl">
-                                    {getetTotolPrice()} : บาท
+                                    {numberFormat(getetTotolPrice())} : บาท
                                 </span>
                             </div>
                         </div>
 
                         {user ? (
-                            <Link 
-                                
-                                to="/cart">
+                            <Link to="/cart">
                                 <button
-                                    onClick={handleSaveCart} 
-                                    className=" w-full mt-4 bg-orange-400 text-white  py-2 rounded-md shadow-md hover:bg-orange-500 hover:scale-105">
-                                    Payment
+                                    disabled={cart.length < 1}
+                                    onClick={handleSaveCart}
+                                    className={`w-full mt-4 py-2 rounded-md shadow-md text-white ${
+                                        cart.length < 1
+                                          ? 'bg-gray-400 cursor-not-allowed'
+                                          : 'bg-orange-400 hover:bg-orange-500 hover:scale-105'
+                                      }`}
+                                >
+                                    {cart.length < 1
+                                        ? "Cart is Empty" 
+                                        : "Payment"}
                                 </button>
                             </Link>
                         ) : (
@@ -139,8 +151,6 @@ const ListCard = () => {
                                 </button>
                             </Link>
                         )}
-
-
 
                         <Link to="/shop">
                             <button className=" w-full mt-2 border py-2 rounded-md  hover:yellow-600 hover:scale-105">

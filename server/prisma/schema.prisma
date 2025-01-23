@@ -16,12 +16,12 @@ datasource db {
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
-  password  String?
-  name      String?
-  picture   String?
+  password  String
+  name      String
+  picture   String
   role      String   @default("user")
   enabled   Boolean  @default(true)
-  address   String?
+  address   String
   orders    Order[]
   carts     Cart[]
   createdAt DateTime @default(now())
@@ -47,16 +47,16 @@ model Product {
 model Order {
   id              Int              @id @default(autoincrement())
   products        ProductOnOrder[]
-  cartTotal       Float
+  cartTotal       Float 
   orderStatus     String           @default("Not Process")
   createdAt       DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   orderedBy       User             @relation(fields: [orderedById], references: [id])
-  orderedById     Int
-  stripePaymentId String?
-  amount          Int?
-  status          String?
-  currency       String?
+  orderedById     Int 
+  stripePaymentId String 
+  amount          Int
+  status          String
+  currency       String
 }
 
 model ProductOnOrder {
@@ -99,6 +99,7 @@ model ProductOnCart {
 
 model Image {
   id         Int      @id @default(autoincrement())
+  type       String   @default("")
   asset_id   String
   public_id  String
   url        String
@@ -108,3 +109,5 @@ model Image {
   product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId  Int
 }
+
+

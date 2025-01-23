@@ -4,7 +4,7 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import  Home  from '../pages/Home'
 import  Shop  from '../pages/Shop'
 import  Cart  from '../pages/Cart'
-import  History  from '../pages/History'
+import  History  from '../pages/user/History'
 import  HomeUser  from '../pages/user/HomeUser'
 import  Login  from '../pages/auth/Login'
 import  Register from '../pages/auth/Register'
@@ -20,6 +20,7 @@ import ProtectRouterUser from './ProtectRouterUser'
 import ProtectRouterAdmin from './ProtectRouterAdmin'
 import EditProduct from '../pages/admin/EditProduct'
 import Payment from '../pages/user/Payment'
+import ManageOrders from '../pages/admin/ManageOrders'
 
 
 
@@ -31,7 +32,6 @@ const router = createBrowserRouter([
           { index: true, element: <Home />},
           { path: 'shop', element: <Shop /> },
           { path: 'cart', element: <Cart />},
-          { path: 'history', element: <History />},
           { path: 'checkout', element: <Checkout />},
           { path: 'login', element: <Login />},
           { path: 'register', element: <Register/>},
@@ -41,21 +41,23 @@ const router = createBrowserRouter([
         path: '/admin',
         element: <ProtectRouterAdmin element={<LayoutAdmin/>}/>,
         children:[
-            { index: true, element: <DashBoard />},
-            { path: 'category', element: <Category />},
-            { path: 'product', element: <Product />}, 
-            { path: 'product/:id', element: <EditProduct/>}, 
-            { path: 'manage', element: <Manage />} 
-            
-          ]
-        }, 
+          { index: true, element: <DashBoard />},
+          { path: 'category', element: <Category />},
+          { path: 'product', element: <Product />}, 
+          { path: 'product/:id', element: <EditProduct/>}, 
+          { path: 'manage', element: <Manage />},
+          { path: 'orders', element: <ManageOrders />} 
+          
+        ]
+      }, 
       {
         path: '/user',
         // element:<LayoutUser/>,
-         element: <ProtectRouterUser element={<LayoutUser/>}/>,
+        element: <ProtectRouterUser element={<LayoutUser/>}/>,
         children:[ 
           { index:true, element: <HomeUser />},
           { path:"payment", element: <Payment />},
+          { path: "history", element: <History />},
 
         ]
 
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
 
 ])  
 
-console.log
+// console.log
 const AppRoutes = () => {
   return (
     <>

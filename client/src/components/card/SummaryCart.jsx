@@ -3,7 +3,7 @@ import useEcomStore from "../../store/ecom-store";
 import { listUserCart,saveAddress } from "../../api/user";
 import { toast } from "react-toastify";
 import { Link,useNavigate } from "react-router-dom";
-
+import { numberFormat } from "../../utils/number";
 
 const SummaryCart = () => {
     const token = useEcomStore((state)=>state.token);
@@ -101,12 +101,12 @@ const SummaryCart = () => {
                                 <div className=" flex justify-between item-end">
                                     <div className=" ">
                                         <p className="font-bold">{item.product.title}</p>
-                                        <p >quantity : {item.count} x {item.product.price}</p>
+                                        <p >quantity : {item.count} x {numberFormat(item.product.price)}</p>
                                     </div>
 
                                     <div>
                                         <p className="text-red-500 font-bold">
-                                            {item.count * item.product.price}
+                                            {numberFormat(item.count * item.product.price)}
                                         </p>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ const SummaryCart = () => {
                             <div>
                                 <div className=" text-xl font-bold flex justify-between">
                                     <p>net Total : </p>
-                                    <p className="text-orange-500">{cartTotal}</p>
+                                    <p className="text-orange-500">{numberFormat(cartTotal)}</p>
                                 </div>
                             </div>
                         </div>

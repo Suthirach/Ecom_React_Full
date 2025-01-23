@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { Pencil, Eraser } from "lucide-react";
 import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
+import { numberFormat } from "../../utils/number";
+import { dateformat } from "../../utils/dateformat";
+
 
 const initialState = {
     title: "",
@@ -104,7 +107,7 @@ const FormProduct = () => {
                             <input
                                 type="number"
                                 className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                value={form.price}
+                                value={(form.price)}
                                 onChange={handleOnChange}
                                 placeholder="Price"
                                 name="price"
@@ -204,7 +207,7 @@ const FormProduct = () => {
                                             {item.description}
                                         </td>
                                         <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
-                                            ${item.price.toFixed(2)}
+                                            ${numberFormat(item.price.toFixed(2))}
                                         </td>
                                         <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
                                             {item.quantity}
@@ -213,7 +216,7 @@ const FormProduct = () => {
                                             {item.sold}
                                         </td>
                                         <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2">
-                                            {item.updateAt}
+                                            {dateformat(item.updateAt)}
                                         </td>
                                         <td className="flex items-center justify-center box-border px-4 py-2 ">
 

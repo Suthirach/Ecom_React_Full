@@ -11,7 +11,11 @@ const {
     save_address,
     save_order,
     get_order,
+    xxx
     
+
+
+
 } = require('../controllers/user')
 
 // admin สิทธิ์การเข้า 
@@ -29,7 +33,8 @@ router.delete('/user/cart',authCheck,remove_cart)
 router.post('/user/address',authCheck,save_address)
 
 router.post('/user/order',authCheck,save_order)
-router.get('/user/order',authCheck,get_order)
+// router.get('/user/order',get_order)
+router.get('/user/orders',authCheck,get_order)
 
 
 

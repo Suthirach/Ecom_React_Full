@@ -143,19 +143,21 @@ exports.remove = async (req, res) => {
             (item) =>
                 new Promise((resolve, reject) => {
                     //ลบรูปในคาว
-                    cloudinary.uploader.destroy(item.public_id, (error, result) => {
-                        if (error) reject(error);
-                        else resolve(result);
-                    
-                    });
+                    cloudinary.uploader.destroy(
+                        item.public_id,
+                        (error, result) => {
+                            if (error) reject(error);
+                            else resolve(result);
+                        }
+                    );
                 })
-        )
+        );
         await Promise.all(deleteImages);
         await prisma.product.delete({
-            where:{
-                id: Number(id)
-            }
-        })
+            where: {
+                id: Number(id),
+            },
+        });
         // console.log(id)
         res.send("Delete Success");
     } catch (err) {
@@ -172,7 +174,10 @@ exports.listBy = async (req, res) => {
         const products = await prisma.product.findMany({
             take: limit,
             orderBy: { [sort]: order },
-            include: { category: true },
+            include: { 
+                category: true,
+                images: true
+            },
         });
         res.send(products);
     } catch (err) {
@@ -263,8 +268,6 @@ exports.search = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
-
-// module.exports = cloudinary;
 
 exports.createImages = async (req, res) => {
     try {

@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const { authCheck } = require('../middlewares/authCheck')
-const { getOrderAdmin,changOrderStatus } = require('../controllers/admin')
+const { getOrderAdmin,changeOrderStatus } = require('../controllers/admin')
 
 
 
-router.put('/admin/order-status',authCheck, changOrderStatus)
-router.get('/user/order',authCheck,getOrderAdmin)
+router.get('/admin/orders',authCheck,getOrderAdmin)
+router.put('/admin/order-status',authCheck, changeOrderStatus)
 
 
 

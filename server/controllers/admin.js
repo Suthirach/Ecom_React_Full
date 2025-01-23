@@ -1,6 +1,6 @@
 const prisma = require("../config/prisma")
 
-exports.changOrderStatus = async(req,res)=>{
+exports.changeOrderStatus = async(req,res)=>{
     try{
         //code
         const { orderId, orderStatus } = req.body 
@@ -27,6 +27,7 @@ exports.getOrderAdmin = async(req,res)=>{
                 },
                 orderedBy: {
                     select:{
+                        id: true,
                         email: true,
                         address: true
                     }

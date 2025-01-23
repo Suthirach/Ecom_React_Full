@@ -6,6 +6,7 @@ import { listCategory } from '../api/Category'
 import Product from '../pages/admin/Product'
 import { listProduct, searchFilters } from '../api/product'
 import _ from 'lodash'
+import { toast } from 'react-toastify'
 
 const ecomStore = (set, get) => ({
     user : null,
@@ -14,6 +15,24 @@ const ecomStore = (set, get) => ({
     Products : [],
     carts: [], 
     
+    logout:()=>{
+        try{
+
+            set({
+                user : null,
+                token : null,
+                categories : [], 
+                Products : [],
+                carts: [], 
+                
+            })
+            toast.success("Logout Success")
+        }catch(err){
+            console.log(err)
+        }
+
+    },
+
     actionAddCart:(product)=>{
         const  carts = get().carts
         const updateCart = [...carts,{...product,count:1 }]
@@ -90,6 +109,12 @@ const ecomStore = (set, get) => ({
             console.log(err)
         }
     },
+
+    clearCart: ()=> {
+         set({ carts: []})
+    }
+
+    
 })
 
 const userPersist = {
