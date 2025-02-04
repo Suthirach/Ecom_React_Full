@@ -48,7 +48,7 @@ const HistoryCard = () => {
             {/* คลุม */}
             <div className="space-y-6">
                 {/* Card Loop Order */}
-                {orders?.map((item, index) => {
+                {orders.slice().reverse().map((item, index) => {
                     return (
                         <div
                             key={index}

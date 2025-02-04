@@ -68,10 +68,21 @@ export const TableUser = () => {
 
     console.log("user", users);
 
+    const getStatusColor = (status) => {
+        switch (status) {
+          case "user":
+            return "bg-green-500";
+          case "admin":
+            return "bg-blue-500";
+   
+        }
+      };
+    
+
     return (
         <div>
-            TableUser
-            <div className="w-full pl-64 flex flex-col min-h-screen bg-gray-900 text-gray-200">
+            
+            <div className=" w-full pl-64 flex flex-col min-h-screen bg-gray-900 text-gray-200">
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg mx-8 mt-6">
                     <h1 className="text-2xl font-bold text-gray-100 mb-6">
                         Users Management
@@ -127,11 +138,13 @@ export const TableUser = () => {
                                                     e.target.value
                                                 )
                                             }
-                                            className="px-2 py-1 rounded-md border border-gray-600 text-gray-200 bg-gray-800 focus:outline-none focus:ring focus:ring-gray-400"
+                                            
+                                            className="px-2 py-1 rounded-md border hover:bg-gray-600 border-gray-600 text-gray-200 bg-gray-800 focus:outline-none focus:ring focus:ring-gray-400"
                                             value={el.role}
-                                        >
-                                            <option>user</option>
-                                            <option>admin</option>
+                                        >   
+                                        
+                                            <option className="">user</option>
+                                            <option className="">admin</option>
                                         </select>
 
 

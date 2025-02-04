@@ -27,7 +27,7 @@ import ManageOrders from '../pages/admin/ManageOrders'
 const router = createBrowserRouter([
     {
         path:'/',
-        element:<Layout/>,
+        element:<Layout />,
         children:[
           { index: true, element: <Home />},
           { path: 'shop', element: <Shop /> },

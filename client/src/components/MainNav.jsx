@@ -19,10 +19,10 @@ const MainNav = () => {
     const carts = useEcomStore((state) => state.carts);
     const user = useEcomStore((state) => state.user);
     const logOut = useEcomStore((state) => state.logout);
-    // console.log(Boolean(user))
+    console.log(user);
 
     return (
-        <nav className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg">
+        <nav className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg ">
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
                 {/* Logo */}
                 <div className="text-2xl font-bold">
@@ -154,148 +154,486 @@ const MainNav = () => {
                             </button>
                         </div>
                     )} */}
-
-                {user ? (
-                    <div className="h-11 bg-orange-400 md:flex space-x-4 shadow-2xl rounded-full ">
-                        <button
-                            onClick={toggleDropDown}
-                            className="  flex items-center gap-1 px-1"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 61.8 61.8"
-                                id="Avatar"
-                                className="w-12 h-12 hover:transform hover:scale-110"
-                            >
-                                <g
-                                    fill="#ff9804"
-                                    className="color000000 svgShape"
-                                >
-                                    <g
-                                        fill="#ff9804"
-                                        className="color000000 svgShape"
-                                    >
-                                        <circle
-                                            cx="30.9"
-                                            cy="30.9"
-                                            r="30.9"
-                                            fill="#e0d358"
-                                            className="color58b0e0 svgShape"
-                                        ></circle>
-                                        <path
-                                            fill="#ff6b06"
-                                            fill-rule="evenodd"
-                                            d="m23.255 38.68 15.907.146v15.602l-15.907-.147V38.68z"
-                                            className="color302e33 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#857c6e"
-                                            fill-rule="evenodd"
-                                            d="M53.478 51.993A30.813 30.813 0 0 1 30.9 61.8a31.225 31.225 0 0 1-3.837-.237A34.072 34.072 0 0 1 15.9 57.919a31.036 31.036 0 0 1-7.857-6.225l1.284-3.1 13.925-6.212c0 4.535 1.31 10.02 7.439 10.113 7.57.113 8.47-5.475 8.47-10.15l12.79 6.282z"
-                                            className="color857a6e svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ff6b06"
-                                            fill-rule="evenodd"
-                                            d="M31.462 52.495c-3.342-5.472-9.388-6.287-11.359-6.6-5.42-.86-14.56-4.28-8.564-9.72 10.765-9.764 6.898-22.032 19.513-22.032 13.47 0 8.873 12.268 19.638 22.032 5.997 5.44-3.143 8.86-8.565 9.72a14.292 14.292 0 0 0-10.663 6.6z"
-                                            className="color302e33 svgShape"
-                                        ></path>
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M39.964 42.252c-1.125 4.01-4.008 6.397-8.598 6.207-3.94-.163-7.297-2.397-8.11-6.204z"
-                                            opacity=".18"
-                                            fill="#ff9804"
-                                            className="color000000 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ffffff"
-                                            fill-rule="evenodd"
-                                            d="M31.129 8.432c21.281 0 12.987 35.266 0 35.266-12.267 0-21.281-35.266 0-35.266z"
-                                            className="colorffe8be svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#fff066"
-                                            fill-rule="evenodd"
-                                            d="M18.365 24.045c-3.07 1.34-.46 7.687 1.472 7.658a31.973 31.973 0 0 1-1.472-7.658zM44.14 24.045c3.07 1.339.46 7.687-1.471 7.658a31.993 31.993 0 0 0 1.471-7.658z"
-                                            className="colorf9dca4 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ffaf3c"
-                                            fill-rule="evenodd"
-                                            d="M19.113 25.706c-2.83-4.958-2.783-9.375-1.362-11.817 2.048-3.52 4.922-3.688 5.315-4.517 4.025-8.479 24.839-2.048 23.97 11.09a14.798 14.798 0 0 0-1.522-2.486s-.075 4.991-1.437 6.957c-1.64.464-15.061.239-20.053-9.948-4.006 2.268-5.06 7.015-4.91 10.72z"
-                                            className="color969696 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ffaf3c"
-                                            fill-rule="evenodd"
-                                            d="M31.15 46.543c-2.66.022-15.617-4.022-12.61-26.045 0 0 .65 9.916 2.775 12.788 1.382 1.868 2.625 2.57 3.82.746 1.248-1.9 3.946-3.473 6.038-1.677 1.737-1.85 4.848-.212 6.084 1.677 1.195 1.823 2.44 1.123 3.822-.746 2.125-2.872 2.586-12.456 2.586-12.456 3.456 23.6-9.855 25.735-12.515 25.713z"
-                                            className="color969696 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ffffff"
-                                            fill-rule="evenodd"
-                                            d="M26.527 36.802a7.118 7.118 0 0 1 4.568-2.096 7.29 7.29 0 0 1 4.503 2.099c-.788.525-5.874 1.737-9.071-.003z"
-                                            className="colorffe8be svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#7d7262"
-                                            fill-rule="evenodd"
-                                            d="M26.611 51.297a29.35 29.35 0 0 0-8.171-3.501c-4.778-.758-13.423-1.518-11.271-10.086C12.023 18.38 18.85 3.688 31.457 3.87c12.836.184 19.09 15.8 23.84 33.865 1.904 7.238-6.79 9.313-11.508 10.06A21.129 21.129 0 0 0 36 51.14c-6.963 4.765-1.812 4.7-9.389.158zm4.851 1.198a14.292 14.292 0 0 1 10.663-6.6c5.422-.86 14.562-4.28 8.565-9.72-10.765-9.764-6.167-22.032-19.638-22.032-12.615 0-8.748 12.268-19.513 22.032-5.997 5.44 3.143 8.86 8.564 9.72 1.97.313 8.017 1.127 11.36 6.6z"
-                                            className="color7d7062 svgShape"
-                                        ></path>
-                                        <path
-                                            fill="#ff6b06"
-                                            fill-rule="evenodd"
-                                            d="M24.202 50.213s5.988 3.256 7.588 7.992c1.61-5.121 7.627-8.327 7.627-8.327S33.07 52.33 31.7 55.534c-.973-1.722-2.707-3.4-7.497-5.321z"
-                                            className="color302e33 svgShape"
-                                        ></path>
-                                    </g>
-                                </g>
-                            </svg>
-                            <ChevronDown className="hover:transform hover:scale-125" />
-                        </button>
-
-                        {isOpen && (
-                            <div className="z-50 absolute mt-4 top-12 bg-white text-orange-500">
-                                <Link
-                                    to={"/user/history"}
-                                    className="block px-2 py-1 hover:bg-gray-200 "
-                                >
-                                    History
-                                </Link>
-                                <Link to={"/login"}>
+                {/* {user.role === admin ( ) } */}
+                <div className="h-12 w-20">
+                    {user ? (
+                        user.role === "admin" ? (
+                            isOpen ? (
+                                //admin choce
+                                <div className=" h-12  bg-white md:flex space-x-4 shadow-2xl rounded-lg ">
                                     <button
-                                        onClick={() => logOut()}
-                                        className="block px-2 py-1 hover:bg-gray-200 "
+                                        onClick={toggleDropDown}
+                                        className=" overflow  flex items-center gap-1 px-1"
                                     >
-                                        Logout
+                                        {/* รูป } */}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 61.8 61.8"
+                                            id="Avatar"
+                                            className="w-10 h-10 hover:transform hover:scale-110"
+                                        >
+                                            <g
+                                                fill="#ff9804"
+                                                className="color000000 svgShape"
+                                            >
+                                                <g
+                                                    fill="#ff9804"
+                                                    className="color000000 svgShape"
+                                                >
+                                                    <circle
+                                                        cx="30.9"
+                                                        cy="30.9"
+                                                        r="30.9"
+                                                        fill="#e0d358"
+                                                        className="color58b0e0 svgShape"
+                                                    ></circle>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="m23.255 38.68 15.907.146v15.602l-15.907-.147V38.68z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#857c6e"
+                                                        fill-rule="evenodd"
+                                                        d="M53.478 51.993A30.813 30.813 0 0 1 30.9 61.8a31.225 31.225 0 0 1-3.837-.237A34.072 34.072 0 0 1 15.9 57.919a31.036 31.036 0 0 1-7.857-6.225l1.284-3.1 13.925-6.212c0 4.535 1.31 10.02 7.439 10.113 7.57.113 8.47-5.475 8.47-10.15l12.79 6.282z"
+                                                        className="color857a6e svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="M31.462 52.495c-3.342-5.472-9.388-6.287-11.359-6.6-5.42-.86-14.56-4.28-8.564-9.72 10.765-9.764 6.898-22.032 19.513-22.032 13.47 0 8.873 12.268 19.638 22.032 5.997 5.44-3.143 8.86-8.565 9.72a14.292 14.292 0 0 0-10.663 6.6z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M39.964 42.252c-1.125 4.01-4.008 6.397-8.598 6.207-3.94-.163-7.297-2.397-8.11-6.204z"
+                                                        opacity=".18"
+                                                        fill="#ff9804"
+                                                        className="color000000 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffffff"
+                                                        fill-rule="evenodd"
+                                                        d="M31.129 8.432c21.281 0 12.987 35.266 0 35.266-12.267 0-21.281-35.266 0-35.266z"
+                                                        className="colorffe8be svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#fff066"
+                                                        fill-rule="evenodd"
+                                                        d="M18.365 24.045c-3.07 1.34-.46 7.687 1.472 7.658a31.973 31.973 0 0 1-1.472-7.658zM44.14 24.045c3.07 1.339.46 7.687-1.471 7.658a31.993 31.993 0 0 0 1.471-7.658z"
+                                                        className="colorf9dca4 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffaf3c"
+                                                        fill-rule="evenodd"
+                                                        d="M19.113 25.706c-2.83-4.958-2.783-9.375-1.362-11.817 2.048-3.52 4.922-3.688 5.315-4.517 4.025-8.479 24.839-2.048 23.97 11.09a14.798 14.798 0 0 0-1.522-2.486s-.075 4.991-1.437 6.957c-1.64.464-15.061.239-20.053-9.948-4.006 2.268-5.06 7.015-4.91 10.72z"
+                                                        className="color969696 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffaf3c"
+                                                        fill-rule="evenodd"
+                                                        d="M31.15 46.543c-2.66.022-15.617-4.022-12.61-26.045 0 0 .65 9.916 2.775 12.788 1.382 1.868 2.625 2.57 3.82.746 1.248-1.9 3.946-3.473 6.038-1.677 1.737-1.85 4.848-.212 6.084 1.677 1.195 1.823 2.44 1.123 3.822-.746 2.125-2.872 2.586-12.456 2.586-12.456 3.456 23.6-9.855 25.735-12.515 25.713z"
+                                                        className="color969696 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffffff"
+                                                        fill-rule="evenodd"
+                                                        d="M26.527 36.802a7.118 7.118 0 0 1 4.568-2.096 7.29 7.29 0 0 1 4.503 2.099c-.788.525-5.874 1.737-9.071-.003z"
+                                                        className="colorffe8be svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#7d7262"
+                                                        fill-rule="evenodd"
+                                                        d="M26.611 51.297a29.35 29.35 0 0 0-8.171-3.501c-4.778-.758-13.423-1.518-11.271-10.086C12.023 18.38 18.85 3.688 31.457 3.87c12.836.184 19.09 15.8 23.84 33.865 1.904 7.238-6.79 9.313-11.508 10.06A21.129 21.129 0 0 0 36 51.14c-6.963 4.765-1.812 4.7-9.389.158zm4.851 1.198a14.292 14.292 0 0 1 10.663-6.6c5.422-.86 14.562-4.28 8.565-9.72-10.765-9.764-6.167-22.032-19.638-22.032-12.615 0-8.748 12.268-19.513 22.032-5.997 5.44 3.143 8.86 8.564 9.72 1.97.313 8.017 1.127 11.36 6.6z"
+                                                        className="color7d7062 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="M24.202 50.213s5.988 3.256 7.588 7.992c1.61-5.121 7.627-8.327 7.627-8.327S33.07 52.33 31.7 55.534c-.973-1.722-2.707-3.4-7.497-5.321z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        <ChevronDown className="text-orange-500 hover:transform hover:scale-125" />
                                     </button>
-                                </Link>
+
+                                    {isOpen && (
+                                        <div className="absolute z-50 top-14 right-12 w-48 bg-white text-orange-500 rounded-lg shadow-lg">
+                                            <Link
+                                                to={"/user/history"}
+                                                className="block px-4 py-2 hover:bg-orange-100 transition-all rounded-t-lg"
+                                            >
+                                                History
+                                            </Link>
+                                            <Link
+                                                to={"/admin"}
+                                                className="block px-4 py-2 hover:bg-orange-100 transition-all"
+                                            >
+                                                Manages
+                                            </Link>
+                                            <Link to={"/login"}>
+                                                <button
+                                                    onClick={() => logOut()}
+                                                    className="block w-full text-left px-4 py-2 hover:bg-red-500 hover:text-white transition-all rounded-b-lg"
+                                                >
+                                                    Logout
+                                                </button>
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="h-11 bg-orange-400 md:flex space-x-4 shadow-2xl rounded-full ">
+                                    <button
+                                        onClick={toggleDropDown}
+                                        className="  flex items-center gap-1 px-1"
+                                    >
+                                        {/* รูป } */}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 61.8 61.8"
+                                            id="Avatar"
+                                            className="w-12 h-12 hover:transform hover:scale-110"
+                                        >
+                                            <g
+                                                fill="#ff9804"
+                                                className="color000000 svgShape"
+                                            >
+                                                <g
+                                                    fill="#ff9804"
+                                                    className="color000000 svgShape"
+                                                >
+                                                    <circle
+                                                        cx="30.9"
+                                                        cy="30.9"
+                                                        r="30.9"
+                                                        fill="#e0d358"
+                                                        className="color58b0e0 svgShape"
+                                                    ></circle>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="m23.255 38.68 15.907.146v15.602l-15.907-.147V38.68z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#857c6e"
+                                                        fill-rule="evenodd"
+                                                        d="M53.478 51.993A30.813 30.813 0 0 1 30.9 61.8a31.225 31.225 0 0 1-3.837-.237A34.072 34.072 0 0 1 15.9 57.919a31.036 31.036 0 0 1-7.857-6.225l1.284-3.1 13.925-6.212c0 4.535 1.31 10.02 7.439 10.113 7.57.113 8.47-5.475 8.47-10.15l12.79 6.282z"
+                                                        className="color857a6e svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="M31.462 52.495c-3.342-5.472-9.388-6.287-11.359-6.6-5.42-.86-14.56-4.28-8.564-9.72 10.765-9.764 6.898-22.032 19.513-22.032 13.47 0 8.873 12.268 19.638 22.032 5.997 5.44-3.143 8.86-8.565 9.72a14.292 14.292 0 0 0-10.663 6.6z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M39.964 42.252c-1.125 4.01-4.008 6.397-8.598 6.207-3.94-.163-7.297-2.397-8.11-6.204z"
+                                                        opacity=".18"
+                                                        fill="#ff9804"
+                                                        className="color000000 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffffff"
+                                                        fill-rule="evenodd"
+                                                        d="M31.129 8.432c21.281 0 12.987 35.266 0 35.266-12.267 0-21.281-35.266 0-35.266z"
+                                                        className="colorffe8be svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#fff066"
+                                                        fill-rule="evenodd"
+                                                        d="M18.365 24.045c-3.07 1.34-.46 7.687 1.472 7.658a31.973 31.973 0 0 1-1.472-7.658zM44.14 24.045c3.07 1.339.46 7.687-1.471 7.658a31.993 31.993 0 0 0 1.471-7.658z"
+                                                        className="colorf9dca4 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffaf3c"
+                                                        fill-rule="evenodd"
+                                                        d="M19.113 25.706c-2.83-4.958-2.783-9.375-1.362-11.817 2.048-3.52 4.922-3.688 5.315-4.517 4.025-8.479 24.839-2.048 23.97 11.09a14.798 14.798 0 0 0-1.522-2.486s-.075 4.991-1.437 6.957c-1.64.464-15.061.239-20.053-9.948-4.006 2.268-5.06 7.015-4.91 10.72z"
+                                                        className="color969696 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffaf3c"
+                                                        fill-rule="evenodd"
+                                                        d="M31.15 46.543c-2.66.022-15.617-4.022-12.61-26.045 0 0 .65 9.916 2.775 12.788 1.382 1.868 2.625 2.57 3.82.746 1.248-1.9 3.946-3.473 6.038-1.677 1.737-1.85 4.848-.212 6.084 1.677 1.195 1.823 2.44 1.123 3.822-.746 2.125-2.872 2.586-12.456 2.586-12.456 3.456 23.6-9.855 25.735-12.515 25.713z"
+                                                        className="color969696 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ffffff"
+                                                        fill-rule="evenodd"
+                                                        d="M26.527 36.802a7.118 7.118 0 0 1 4.568-2.096 7.29 7.29 0 0 1 4.503 2.099c-.788.525-5.874 1.737-9.071-.003z"
+                                                        className="colorffe8be svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#7d7262"
+                                                        fill-rule="evenodd"
+                                                        d="M26.611 51.297a29.35 29.35 0 0 0-8.171-3.501c-4.778-.758-13.423-1.518-11.271-10.086C12.023 18.38 18.85 3.688 31.457 3.87c12.836.184 19.09 15.8 23.84 33.865 1.904 7.238-6.79 9.313-11.508 10.06A21.129 21.129 0 0 0 36 51.14c-6.963 4.765-1.812 4.7-9.389.158zm4.851 1.198a14.292 14.292 0 0 1 10.663-6.6c5.422-.86 14.562-4.28 8.565-9.72-10.765-9.764-6.167-22.032-19.638-22.032-12.615 0-8.748 12.268-19.513 22.032-5.997 5.44 3.143 8.86 8.564 9.72 1.97.313 8.017 1.127 11.36 6.6z"
+                                                        className="color7d7062 svgShape"
+                                                    ></path>
+                                                    <path
+                                                        fill="#ff6b06"
+                                                        fill-rule="evenodd"
+                                                        d="M24.202 50.213s5.988 3.256 7.588 7.992c1.61-5.121 7.627-8.327 7.627-8.327S33.07 52.33 31.7 55.534c-.973-1.722-2.707-3.4-7.497-5.321z"
+                                                        className="color302e33 svgShape"
+                                                    ></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        <ChevronDown className="hover:transform hover:scale-125" />
+                                    </button>
+
+                                    {isOpen && (
+                                        <div className="z-50 absolute mt-4 top-12 bg-white text-orange-500">
+                                            <Link
+                                                to={"/user/history"}
+                                                className="block px-2 py-1 hover:bg-gray-200 "
+                                            >
+                                                History
+                                            </Link>
+                                            <Link to={"/login"}>
+                                                <button
+                                                    onClick={() => logOut()}
+                                                    className="block px-2 py-1 hover:bg-gray-200 "
+                                                >
+                                                    Logout
+                                                </button>
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        ) : isOpen ? (
+                            // user choce
+                            <div className=" h-12  bg-white md:flex space-x-4 shadow-2xl rounded-lg ">
+                                <button
+                                    onClick={toggleDropDown}
+                                    className=" overflow  flex items-center gap-1 px-1"
+                                >
+                                    {/* รูป } */}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 61.8 61.8"
+                                        id="Avatar"
+                                        className="w-10 h-10 hover:transform hover:scale-110"
+                                    >
+                                        <g
+                                            fill="#000000"
+                                            class="color000000 svgShape"
+                                        >
+                                            <g
+                                                fill="#000000"
+                                                class="color000000 svgShape"
+                                            >
+                                                <circle
+                                                    cx="30.9"
+                                                    cy="30.9"
+                                                    r="30.9"
+                                                    fill="#FFCC00"
+                                                    class="colorffc200 svgShape"
+                                                ></circle>
+                                                <path
+                                                    fill="#FF6633"
+                                                    fill-rule="evenodd"
+                                                    d="M52.587 52.908a30.895 30.895 0 0 1-43.667-.291 9.206 9.206 0 0 1 4.037-4.832 19.799 19.799 0 0 1 4.075-2.322c-2.198-7.553 3.777-11.266 6.063-12.335 0 3.487 3.265 1.173 7.317 1.217 3.336.037 9.933 3.395 9.933-1.035 3.67 1.086 7.67 8.08 4.917 12.377a17.604 17.604 0 0 1 3.181 2.002 10.192 10.192 0 0 1 4.144 5.22z"
+                                                    class="color677079 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff066"
+                                                    fill-rule="evenodd"
+                                                    d="m24.032 38.68 14.92.09v3.437l-.007.053a2.784 2.784 0 0 1-.07.462l-.05.341-.03.071c-.966 5.074-5.193 7.035-7.803 8.401-2.75-1.498-6.638-4.197-6.947-8.972l-.013-.059v-.2a8.897 8.897 0 0 1-.004-.207c0 .036.003.07.004.106z"
+                                                    class="colorf9dca4 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M38.953 38.617v4.005a7.167 7.167 0 0 1-.095 1.108 6.01 6.01 0 0 1-.38 1.321c-5.184 3.915-13.444.704-14.763-5.983z"
+                                                    opacity=".11"
+                                                    fill="#000000"
+                                                    class="color000000 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff066"
+                                                    fill-rule="evenodd"
+                                                    d="M18.104 25.235c-4.94 1.27-.74 7.29 2.367 7.264a19.805 19.805 0 0 1-2.367-7.264zM43.837 25.235c4.94 1.27.74 7.29-2.368 7.263a19.8 19.8 0 0 0 2.368-7.263z"
+                                                    class="colorf9dca4 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff9be"
+                                                    fill-rule="evenodd"
+                                                    d="M30.733 11.361c20.523 0 12.525 32.446 0 32.446-11.83 0-20.523-32.446 0-32.446z"
+                                                    class="colorffe8be svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#ff6b06"
+                                                    fill-rule="evenodd"
+                                                    d="M21.047 22.105a1.738 1.738 0 0 1-.414 2.676c-1.45 1.193-1.503 5.353-1.503 5.353-.56-.556-.547-3.534-1.761-5.255s-2.032-13.763 4.757-18.142a4.266 4.266 0 0 0-.933 3.6s4.716-6.763 12.54-6.568a5.029 5.029 0 0 0-2.487 3.26s6.84-2.822 12.54.535a13.576 13.576 0 0 0-4.145 1.947c2.768.076 5.443.59 7.46 2.384a3.412 3.412 0 0 0-2.176 4.38c.856 3.503.936 6.762.107 8.514-.829 1.752-1.22.621-1.739 4.295a1.609 1.609 0 0 1-.77 1.214c-.02.266.382-3.756-.655-4.827-1.036-1.07-.385-2.385.029-3.163 2.89-5.427-5.765-7.886-10.496-7.88-4.103.005-14 1.87-10.354 7.677z"
+                                                    class="color8a5c42 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#554a43"
+                                                    fill-rule="evenodd"
+                                                    d="M19.79 49.162c.03.038 10.418 13.483 22.63-.2-1.475 4.052-7.837 7.27-11.476 7.26-6.95-.02-10.796-5.6-11.154-7.06z"
+                                                    class="color434955 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#ffffff"
+                                                    fill-rule="evenodd"
+                                                    d="M36.336 61.323c-.41.072-.822.135-1.237.192v-8.937a.576.576 0 0 1 .618-.516.576.576 0 0 1 .619.516v8.745zm-9.82.166q-.622-.089-1.237-.2v-8.711a.576.576 0 0 1 .618-.516.576.576 0 0 1 .62.516z"
+                                                    class="colore6e6e6 svgShape"
+                                                ></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <ChevronDown className="text-orange-500 hover:transform hover:scale-125" />
+                                </button>
+
+                                {isOpen && (
+                                    <div className="absolute z-50 top-14 right-12 w-48 bg-white text-orange-500 rounded-lg shadow-lg">
+                                        <Link
+                                            to={"/user/history"}
+                                            className="block px-4 py-2 hover:bg-orange-100 transition-all rounded-t-lg"
+                                        >
+                                            History
+                                        </Link>
+
+                                        <Link to={"/login"}>
+                                            <button
+                                                onClick={() => logOut()}
+                                                className="block w-full text-left px-4 py-2 hover:bg-red-500 hover:text-white transition-all rounded-b-lg"
+                                            >
+                                                Logout
+                                            </button>
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                ) : (
-                    <div className=" md:flex space-x-4">
-                        {!isRegisterPage && (
-                            <Link
-                                to={"/register"}
-                                className="shadow-lg bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition"
-                            >
-                                Register
-                            </Link>
-                        )}
+                        ) : (
+                            <div className="h-11 bg-orange-400 md:flex space-x-4 shadow-2xl rounded-full ">
+                                <button
+                                    onClick={toggleDropDown}
+                                    className="  flex items-center gap-1 px-1"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 61.8 61.8"
+                                        id="Avatar"
+                                        className="w-12 h-12 hover:transform hover:scale-110 "
+                                    >
+                                        <g
+                                            fill="#000000"
+                                            class="color000000 svgShape"
+                                        >
+                                            <g
+                                                fill="#000000"
+                                                class="color000000 svgShape"
+                                            >
+                                                <circle
+                                                    cx="30.9"
+                                                    cy="30.9"
+                                                    r="30.9"
+                                                    fill="#FFFFCC"
+                                                    class="colorffc200 svgShape"
+                                                ></circle>
+                                                <path
+                                                    fill="#ffaf3c"
+                                                    fill-rule="evenodd"
+                                                    d="M52.587 52.908a30.895 30.895 0 0 1-43.667-.291 9.206 9.206 0 0 1 4.037-4.832 19.799 19.799 0 0 1 4.075-2.322c-2.198-7.553 3.777-11.266 6.063-12.335 0 3.487 3.265 1.173 7.317 1.217 3.336.037 9.933 3.395 9.933-1.035 3.67 1.086 7.67 8.08 4.917 12.377a17.604 17.604 0 0 1 3.181 2.002 10.192 10.192 0 0 1 4.144 5.22z"
+                                                    class="color677079 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff066"
+                                                    fill-rule="evenodd"
+                                                    d="m24.032 38.68 14.92.09v3.437l-.007.053a2.784 2.784 0 0 1-.07.462l-.05.341-.03.071c-.966 5.074-5.193 7.035-7.803 8.401-2.75-1.498-6.638-4.197-6.947-8.972l-.013-.059v-.2a8.897 8.897 0 0 1-.004-.207c0 .036.003.07.004.106z"
+                                                    class="colorf9dca4 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M38.953 38.617v4.005a7.167 7.167 0 0 1-.095 1.108 6.01 6.01 0 0 1-.38 1.321c-5.184 3.915-13.444.704-14.763-5.983z"
+                                                    opacity=".11"
+                                                    fill="#000000"
+                                                    class="color000000 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff066"
+                                                    fill-rule="evenodd"
+                                                    d="M18.104 25.235c-4.94 1.27-.74 7.29 2.367 7.264a19.805 19.805 0 0 1-2.367-7.264zM43.837 25.235c4.94 1.27.74 7.29-2.368 7.263a19.8 19.8 0 0 0 2.368-7.263z"
+                                                    class="colorf9dca4 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#fff9be"
+                                                    fill-rule="evenodd"
+                                                    d="M30.733 11.361c20.523 0 12.525 32.446 0 32.446-11.83 0-20.523-32.446 0-32.446z"
+                                                    class="colorffe8be svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#ff6b06"
+                                                    fill-rule="evenodd"
+                                                    d="M21.047 22.105a1.738 1.738 0 0 1-.414 2.676c-1.45 1.193-1.503 5.353-1.503 5.353-.56-.556-.547-3.534-1.761-5.255s-2.032-13.763 4.757-18.142a4.266 4.266 0 0 0-.933 3.6s4.716-6.763 12.54-6.568a5.029 5.029 0 0 0-2.487 3.26s6.84-2.822 12.54.535a13.576 13.576 0 0 0-4.145 1.947c2.768.076 5.443.59 7.46 2.384a3.412 3.412 0 0 0-2.176 4.38c.856 3.503.936 6.762.107 8.514-.829 1.752-1.22.621-1.739 4.295a1.609 1.609 0 0 1-.77 1.214c-.02.266.382-3.756-.655-4.827-1.036-1.07-.385-2.385.029-3.163 2.89-5.427-5.765-7.886-10.496-7.88-4.103.005-14 1.87-10.354 7.677z"
+                                                    class="color8a5c42 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#554a43"
+                                                    fill-rule="evenodd"
+                                                    d="M19.79 49.162c.03.038 10.418 13.483 22.63-.2-1.475 4.052-7.837 7.27-11.476 7.26-6.95-.02-10.796-5.6-11.154-7.06z"
+                                                    class="color434955 svgShape"
+                                                ></path>
+                                                <path
+                                                    fill="#ffffff"
+                                                    fill-rule="evenodd"
+                                                    d="M36.336 61.323c-.41.072-.822.135-1.237.192v-8.937a.576.576 0 0 1 .618-.516.576.576 0 0 1 .619.516v8.745zm-9.82.166q-.622-.089-1.237-.2v-8.711a.576.576 0 0 1 .618-.516.576.576 0 0 1 .62.516z"
+                                                    class="colore6e6e6 svgShape"
+                                                ></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <ChevronDown className="hover:transform hover:scale-125" />
+                                </button>
 
-                        {!isloginPage && (
-                            <Link
-                                to={"/login"}
-                                className="border shadow-lg border-white hover:bg-white hover:text-orange-500 px-4 py-2 rounded-lg transition"
-                            >
-                                Login
-                            </Link>
-                        )}
-                    </div>
-                )}
+                                {isOpen && (
+                                    <div className="z-50 absolute mt-4 top-12 bg-white text-orange-500">
+                                        <Link
+                                            to={"/user/history"}
+                                            className="block px-2 py-1 hover:bg-gray-200 "
+                                        >
+                                            History
+                                        </Link>
+                                        <Link to={"/login"}>
+                                            <button
+                                                onClick={() => logOut()}
+                                                className="block px-2 py-1 hover:bg-gray-200 "
+                                            >
+                                                Logout
+                                            </button>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    ) : (
+                        <div className=" md:flex space-x-4">
+                            {!isRegisterPage && (
+                                <Link
+                                    to={"/register"}
+                                    className="shadow-lg bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition"
+                                >
+                                    Register
+                                </Link>
+                            )}
 
+                            {!isloginPage && (
+                                <Link
+                                    to={"/login"}
+                                    className="border shadow-lg border-white hover:bg-white hover:text-orange-500 px-4 py-2 rounded-lg transition"
+                                >
+                                    Login
+                                </Link>
+                            )}
+                        </div>
+                    )}
+                </div>
                 {/* Auth Buttons */}
                 {/* <div className=" md:flex space-x-4">
                     {!isRegisterPage && (

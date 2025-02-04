@@ -84,7 +84,7 @@ const Uploadfile = ({ form, setForm }) => {
     return (
         <div>
             
-            <div className="flex flex-wrap my-4 mx-auto">
+            <div className=" flex my-4 mx-auto">
                 <div>
                     {   
                         isloading && <LoaderCircle className="items-center animate-spin" text="loading...is your image"/>
@@ -93,7 +93,7 @@ const Uploadfile = ({ form, setForm }) => {
                 {/* <LoaderCircle className=" animate-spin"/> */}
             {
                 form.images.map((item, index) => (
-                <div className="w-1/4 p-2 relative" key={index}>
+                <div className="w-1/2 p-2 relative" key={index}>
                     <img 
                     src={item.url} 
                     alt={`Image ${index}`} 
@@ -109,7 +109,7 @@ const Uploadfile = ({ form, setForm }) => {
                 ))
             }
             </div>
-            <div className="border border-dashed border-gray-300 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex flex-col items-center justify-center space-y-2 text-center text-sm text-gray-600">
+            <div className="border border-dashed border-gray-300 p-4 rounded-lg bg-gray-800 hover:bg-gray-500 transition-colors duration-200 flex flex-col items-center justify-center space-y-2 text-center text-sm text-gray-600">
                 <input
                     onChange={haedleOnChange}
                     type="file"

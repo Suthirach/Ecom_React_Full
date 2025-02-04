@@ -15,7 +15,7 @@ const SidebarAdmin = () => {
 
     return (
         <div className="bg-gray-800 w-64 text-gray-50 flex flex-col h-screen  fixed ">
-            <div className="h-24 bg-gray-900 flex items-center justify-center text-2xl font-bold">
+            <div className="h-24 bg-gray-700 flex items-center justify-center text-2xl font-bold">
                 Admin Panal
             </div>
 

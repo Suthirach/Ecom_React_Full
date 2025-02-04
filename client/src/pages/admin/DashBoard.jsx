@@ -1,135 +1,68 @@
-import React from "react";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 
-const Dashboard = () => {
-    return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
-            {/* Main Content */}
-            <main className="flex-1 ml-0 md:ml-64 p-6">
-                <div className="flex h-screen bg-gray-100">
-    
-                 
+// Register chart.js components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-                    {/* Main Content */}
-                    <main className="flex-1 p-6 overflow-y-auto">
-                        <div className="flex justify-between items-center mb-6">
-                            <h1 className="text-3xl font-bold text-gray-800">
-                                Dashboard
-                            </h1>
-                            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
-                                Add New
-                            </button>
-                        </div>
+export default function Dashboard() {
+  const data = {
+    labels: ["January", "February", "March", "April", "May", "June"],
+    datasets: [
+      {
+        label: "Recent Orders",
+        data: [65, 59, 80, 81, 56, 55],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
 
-                        {/* Stats Section */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div className="bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                                    Total Sales
-                                </h2>
-                                <p className="text-2xl font-bold text-blue-600">
-                                    $12,345
-                                </p>
-                            </div>
-                            <div className="bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                                    New Customers
-                                </h2>
-                                <p className="text-2xl font-bold text-blue-600">
-                                    234
-                                </p>
-                            </div>
-                            <div className="bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                                    Active Users
-                                </h2>
-                                <p className="text-2xl font-bold text-blue-600">
-                                    1,567
-                                </p>
-                            </div>
-                            <div className="bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                                    Pending Orders
-                                </h2>
-                                <p className="text-2xl font-bold text-blue-600">
-                                    45
-                                </p>
-                            </div>
-                        </div>
+  return (
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white">
+      {/* Main Content */}
+      <main className="flex-1 ml-0 md:ml-64 p-6">
+        <div className="flex h-screen bg-gray-900">
+          {/* Main Content */}
+          <main className="flex-1 p-6 overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-3xl font-bold text-gray-100">Dashboard</h1>
+              <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                Add New
+              </button>
+            </div>
 
-                        {/* Table Section */}
-                        <div className="bg-white shadow-lg rounded-lg mt-6 p-6">
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                                Recent Orders
-                            </h2>
-                            <div className="overflow-x-auto">
-                                <table className="table-auto w-full text-left border-collapse">
-                                    <thead>
-                                        <tr className="bg-gray-100">
-                                            <th className="border p-4">
-                                                Order ID
-                                            </th>
-                                            <th className="border p-4">
-                                                Customer
-                                            </th>
-                                            <th className="border p-4">
-                                                Total
-                                            </th>
-                                            <th className="border p-4">
-                                                Status
-                                            </th>
-                                            <th className="border p-4">
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {[1, 2, 3, 4].map((order, index) => (
-                                            <tr
-                                                key={index}
-                                                className={`${
-                                                    index % 2 === 0
-                                                        ? "bg-white"
-                                                        : "bg-gray-50"
-                                                } hover:bg-gray-100`}
-                                            >
-                                                <td className="border p-4">
-                                                    #{1000 + index}
-                                                </td>
-                                                <td className="border p-4">
-                                                    John Doe
-                                                </td>
-                                                <td className="border p-4">
-                                                    $200.00
-                                                </td>
-                                                <td className="border p-4">
-                                                    <span
-                                                        className={`px-2 py-1 rounded text-sm ${
-                                                            index % 2 === 0
-                                                                ? "bg-green-200 text-green-800"
-                                                                : "bg-yellow-200 text-yellow-800"
-                                                        }`}
-                                                    >
-                                                        {index % 2 === 0
-                                                            ? "Completed"
-                                                            : "Pending"}
-                                                    </span>
-                                                </td>
-                                                <td className="border p-4">
-                                                    <button className="text-blue-500 hover:underline">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </main>
+            {/* Stats Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-gray-100 mb-2">Total Sales</h2>
+                <p className="text-2xl font-bold text-blue-400">$12,345</p>
+              </div>
+              <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-gray-100 mb-2">New Customers</h2>
+                <p className="text-2xl font-bold text-blue-400">234</p>
+              </div>
+              <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-gray-100 mb-2">Active Users</h2>
+                <p className="text-2xl font-bold text-blue-400">1,567</p>
+              </div>
+              <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-gray-100 mb-2">Pending Orders</h2>
+                <p className="text-2xl font-bold text-blue-400">45</p>
+              </div>
+            </div>
+
+            {/* Graph Section */}
+            <div className="bg-gray-800 shadow-lg rounded-lg mt-6 p-6">
+              <h2 className="text-2xl font-semibold text-gray-100 mb-4">Recent Orders Graph</h2>
+              <div className="overflow-x-auto">
+                {/* Adjust the width and height of the graph */}
+                <Line data={data} options={{ maintainAspectRatio: false }} height={200} width={300} />
+              </div>
+            </div>
+          </main>
         </div>
-    );
-};
-
-export default Dashboard;
+      </main>
+    </div>
+  );
+}

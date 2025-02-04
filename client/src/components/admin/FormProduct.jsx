@@ -77,178 +77,157 @@ const FormProduct = () => {
     }
 
     return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
-            {/* Main Content */}
-            <main className="flex-1 ml-0 md:ml-64 p-6">
-                {/* Add Product Form */}
-                <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-xl">
-                    <form onSubmit={handleSubmit}>
-                        {/* Header */}
-                        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-                            Add Product
-                        </h1>
-
-                        {/* Form Inputs */}
-                        <div className="grid grid-cols-1 gap-6">
-                            <input
-                                className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                value={form.title}
-                                onChange={handleOnChange}
-                                placeholder="Title"
-                                name="title"
+        <div className="flex md:flex-row min-h-screen bg-gray-900 text-white">
+          {/* Main Content */}
+          <main className="flex-1 ml-0 md:ml-64 p-6">
+            {/* Add Product Form */}
+            <div className=" mx-auto p-6 bg-gray-800 shadow-lg rounded-lg max-w-xl">
+              <form onSubmit={handleSubmit}>
+                {/* Header */}
+                <h1 className="text-3xl font-bold mb-6 text-center text-white">
+                  Add Product
+                </h1>
+      
+                {/* Form Inputs */}
+                <div className="grid grid-cols-1 gap-6">
+                  <input
+                    className="border p-3 rounded-lg w-full text-gray-700 bg-gray-900 focus:ring focus:ring-blue-500"
+                    value={form.title}
+                    onChange={handleOnChange}
+                    placeholder="Title"
+                    name="title"
+                  />
+                  <input
+                    className="border p-3 rounded-lg w-full text-gray-700 bg-gray-900 focus:ring focus:ring-blue-500"
+                    value={form.description}
+                    onChange={handleOnChange}
+                    placeholder="Description"
+                    name="description"
+                  />
+                  <input
+                    type="number"
+                    className="border p-3 rounded-lg w-full text-gray-700 bg-gray-900 focus:ring focus:ring-blue-500"
+                    value={form.price}
+                    onChange={handleOnChange}
+                    placeholder="Price"
+                    name="price"
+                  />
+                  <input
+                    type="number"
+                    className="border p-3 rounded-lg w-full text-gray-700 bg-gray-900 focus:ring focus:ring-blue-500"
+                    value={form.quantity}
+                    onChange={handleOnChange}
+                    placeholder="Quantity"
+                    name="quantity"
+                  />
+                  <select
+                    className="border p-3 rounded-lg w-full text-gray-700 bg-gray-900 focus:ring focus:ring-blue-500"
+                    name="categoryId"
+                    onChange={handleOnChange}
+                    required
+                    value={form.categoryId}
+                  >
+                    <option value="" disabled>
+                      Please Select
+                    </option>
+                    {categories.map((item, index) => (
+                      <option key={index} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                  <Uploadfile form={form} setForm={setForm} />
+      
+                  <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 mt-4 text-lg shadow-md">
+                    Add Product
+                  </button>
+                </div>
+              </form>
+            </div>
+      
+            {/* Products Table */}
+            <div className="container mx-auto p-6 bg-gray-800 shadow-lg rounded-lg mt-6">
+              <h1 className="text-3xl font-bold mb-6 text-center text-white">
+                Products
+              </h1>
+              <div className="overflow-x-auto">
+                <table className="table-auto w-full border-collapse border border-gray-700 text-sm shadow-md">
+                  <thead>
+                    <tr className="bg-blue-900">
+                      {[
+                        "No",
+                        "Image",
+                        "Name",
+                        "Description",
+                        "Price",
+                        "Quantity",
+                        "Sold",
+                        "Updated",
+                        "Manage",
+                      ].map((header) => (
+                        <th
+                          key={header}
+                          className="border border-gray-700 px-4 py-2 text-left text-gray-300"
+                        >
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map((item, index) => (
+                      <tr
+                        key={index}
+                        className={`hover:bg-blue-800 ${
+                          index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"
+                        }`}
+                      >
+                        <td className="px-4 py-2 text-center text-gray-400">
+                          {index + 1}
+                        </td>
+                        <td className="px-4 py-2 text-center">
+                          {item.images.length > 0 ? (
+                            <img
+                              src={item.images[0].url}
+                              alt={item.title}
+                              className="w-16 h-16 object-cover shadow"
                             />
-                            <input
-                                className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                value={form.description}
-                                onChange={handleOnChange}
-                                placeholder="Description"
-                                name="description"
-                            />
-                            <input
-                                type="number"
-                                className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                value={(form.price)}
-                                onChange={handleOnChange}
-                                placeholder="Price"
-                                name="price"
-                            />
-                            <input
-                                type="number"
-                                className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                value={form.quantity}
-                                onChange={handleOnChange}
-                                placeholder="Quantity"
-                                name="quantity"
-                            />
-                            <select
-                                className="border p-3 rounded-lg w-full text-gray-700 shadow-sm focus:ring focus:ring-blue-200"
-                                name="categoryId"
-                                onChange={handleOnChange}
-                                required
-                                value={form.categoryId}
-                            >
-                                <option value="" disabled>
-                                    Please Select
-                                </option>
-                                {categories.map((item, index) => (
-                                    <option key={index} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <Uploadfile form={form} setForm={setForm} />
-
-                            <button className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-transform transform hover:scale-105 mt-4 text-lg shadow-md">
-                                Add Product
+                          ) : (
+                            <span className="text-gray-500 italic">No Image</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-2">{item.title}</td>
+                        <td className="px-4 py-2">{item.description}</td>
+                        <td className="px-4 py-2 text-right">${numberFormat(item.price.toFixed(2))}</td>
+                        <td className="px-4 py-2 text-right">{item.quantity}</td>
+                        <td className="px-4 py-2 text-right">{item.sold}</td>
+                        <td className="px-4 py-2">{dateformat(item.updateAt)}</td>
+                        <td className="gap-2 flex items-center justify-center px-4 py-2">
+                          <Link 
+                           
+                            to={`/admin/product/${item.id}`}>
+                            <button className=" gap-2 flex items-center justify-center text-white bg-yellow-500 hover:bg-yellow-400 rounded-lg px-3 py-2 text-sm transition-all duration-200">
+                              <Pencil size={18} strokeWidth={1.5} />
                             </button>
-                        </div>
-                    </form>
-                </div>
-
-                {/* Products Table */}
-                <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
-                    <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-                        Products
-                    </h1>
-                    <div className="overflow-x-auto">
-                        <table  className=" table-auto w-full border-collapse border border-gray-200 text-sm shadow-md">
-                            <thead>
-                                <tr className="bg-blue-100">
-                                    {[
-                                        "No",
-                                        "Image",
-                                        "Name",
-                                        "Description",
-                                        "Price",
-                                        "Quantity",
-                                        "Sold",
-                                        "Updated",
-                                        "Manage",
-                                    ].map((header) => (
-                                        <th
-                                            key={header}
-                                            className="border border-gray-200 px-4 py-2 text-left"
-                                        >
-                                            {header}
-                                        </th>
-                                    ))}
-                                </tr >
-                            </thead>
-                            <tbody >
-                                {products.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className={ `hover:bg-blue-100  ${
-                                            index % 2 === 0
-                                                ? "bg-white"
-                                                : "bg-gray-50"
-                                        }`}
-                                    >
-                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 px-4 py-2">
-                                            {index + 1}
-                                        </td>
-                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 px-4 py-2">
-                                            {item.images.length > 0 ? (
-                                                <img
-                                                    src={item.images[0].url}
-                                                    alt={item.title}
-                                                    className="w-17 h-16 object-cover shadow"
-                                                />
-                                            ) : (
-                                                <span className="text-gray-400 italic">
-                                                    No Image
-                                                </span>
-                                            )}
-                                        </td>
-                                        <td className=" items-center hover:bg-blue-200 hover:scale-105 p-4 py-2">
-                                            {item.title}
-                                        </td>
-                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2">
-                                            {item.description}
-                                        </td>
-                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
-                                            ${numberFormat(item.price.toFixed(2))}
-                                        </td>
-                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2 text-right">
-                                            {item.quantity}
-                                        </td>
-                                        <td className=" hover:bg-blue-200 hover:scale-105 px-4 py-2 text-right">
-                                            {item.sold}
-                                        </td>
-                                        <td className=" hover:bg-blue-200 hover:scale-105 p-4 py-2">
-                                            {dateformat(item.updateAt)}
-                                        </td>
-                                        <td className="flex items-center justify-center box-border px-4 py-2 ">
-
-
-                                            <Link
-                                                to={`/admin/product/${item.id}`}
-                                            >   
-                                                <button className="flex items-center justify-center text-yellow-700 bg-yellow-200 hover:bg-yellow-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105 mr-2">
-                                                        <Pencil
-                                                            size={18}
-                                                            strokeWidth={1.5}
-                                                        />
-                                                </button>
-                                            </Link>
-
-                                            <button onClick={()=>handleDelete(item.id)} className="flex items-center justify-center text-red-600 bg-red-200 hover:bg-red-400 rounded-lg px-3 py-2 text-sm transition-transform transform hover:scale-105">
-                                                <Eraser 
-                                                    className="text-red-600"
-                                                    size={18}
-                                                    strokeWidth={1.5}
-                                                />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </main>
+                          </Link>
+      
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            className="flex items-center justify-center text-white bg-red-500 hover:bg-red-400 rounded-lg px-3 py-2 text-sm transition-all duration-200"
+                          >
+                            <Eraser size={18} strokeWidth={1.5} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
         </div>
-    );
+      );
+      
 };
 
 export default FormProduct;

@@ -5,7 +5,7 @@ import MainNav from '../components/MainNav'
 const Layout = () => {
   return (
     <div>
-        <MainNav className="mx-auto"/>
+        <MainNav className="mx-auto" />
 
         <main > 
           <Outlet/>

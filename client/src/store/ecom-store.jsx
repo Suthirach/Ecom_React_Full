@@ -8,6 +8,7 @@ import { listProduct, searchFilters } from '../api/product'
 import _ from 'lodash'
 import { toast } from 'react-toastify'
 
+
 const ecomStore = (set, get) => ({
     user : null,
     token : null,
@@ -112,8 +113,16 @@ const ecomStore = (set, get) => ({
 
     clearCart: ()=> {
          set({ carts: []})
-    }
+    },
 
+    ProtectrAdmin : async()=>{
+        try{
+            
+        }catch(err){
+            console.log(err)
+        }
+        
+    },
     
 })
 
